@@ -1,0 +1,67 @@
+.dashboard-container {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  padding: 0 15px 70px 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-container-totalizer h3 {
+  padding-top: 40px;
+  font-size: 36px;
+  line-height: 41px;
+  color: var(--primary-font-color);
+}
+
+.dashboard-container-totalizer p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.dashboard-container-graphic {
+  padding-top: 50px;
+}
+
+/* native class customization react-apexcharts */
+.apexcharts-legend.apexcharts-align-center {
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 576px) {
+  .dashboard-container {
+    margin-top: 40px;
+    padding: 0 40px 70px 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboard-container {
+    padding-bottom: 75px;
+  }
+
+  .dashboard-container-graphic {
+    padding-top: 45px;
+  }
+}
+
+@media (min-width: 992px) {
+  .dashboard-container {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 0;
+  }
+
+  .dashboard-container-totalizer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .dashboard-container-graphic {
+    width: 70%;
+    padding: 65px 0;
+  }
+}

@@ -23,3 +23,15 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
+
+.base-card {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+}
+
+@media (min-width: 1200px) {
+  .base-card {
+    max-width: 960px;
+  }
+}

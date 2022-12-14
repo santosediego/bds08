@@ -60,6 +60,10 @@
     flex-direction: column;
   }
 
+  .dashboard-container-totalizer h3 {
+    padding-top: 0;
+  }
+
   .dashboard-container-graphic {
     width: 70%;
     padding: 65px 0;

@@ -1,6 +1,7 @@
 import { ApexOptions } from 'apexcharts';
+import { Gender, SaleByGender } from '../../types';
 
-export const buildPieChartConfig = (labels: string[] = [], name: string) => {
+export const buildPieChartConfig = (labels: string[] = []) => {
   return {
     labels,
     noData: {
@@ -65,4 +66,30 @@ export const buildPieChartConfig = (labels: string[] = [], name: string) => {
       height: '400px'
     }
   } as ApexOptions;
+};
+
+export const sumSalesByGender = (salesByGender: SaleByGender[] = []) => {
+  return salesByGender.reduce((previosValue, currentValue) => {
+    return previosValue + currentValue.sum;
+  }, 0);
+};
+
+export const buildSalesByGender = (sales: SaleByGender[]) => {
+  const labels = sales.map((sale) => formatGender(sale.gender));
+  const series = sales.map((sale) => sale.sum);
+
+  return {
+    labels,
+    series
+  };
+};
+
+const formatGender = (gender: Gender) => {
+  const textByGender = {
+    MALE: 'Masculino',
+    FEMALE: 'Feminino',
+    OTHER: 'Outros'
+  };
+
+  return textByGender[gender];
 };

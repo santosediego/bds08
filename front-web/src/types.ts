@@ -13,3 +13,8 @@ export type SaleByGender = {
   gender: Gender,
   sum: number
 }
+
+export type PieChartConfig = {
+  labels: string[];
+  series: number[];
+};

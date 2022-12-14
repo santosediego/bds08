@@ -18,7 +18,7 @@ function App() {
       <Header />
       <div className="app-container">
         <Filter onFilterChange={onFilterChange} />
-        <Dashboard />
+        <Dashboard filterData={filterData} />
       </div>
     </>
   );

@@ -1,38 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
-import { Store } from '../../types';
+import { FilterData, Store } from '../../types';
+import { makeRequest } from '../../utils/request';
 import './styles.css';
 
-const filterOptions = [
-  {
-    "id": 3,
-    "name": "Araguari"
-  },
-  {
-    "id": 4,
-    "name": "Ituiutaba"
-  },
-  {
-    "id": 1,
-    "name": "Uberaba"
-  },
-  {
-    "id": 2,
-    "name": "Uberlândia"
-  }
-]
+type Props = {
+  onFilterChange: (filter: FilterData) => void;
+};
 
-function Filter() {
+function Filter({ onFilterChange }: Props) {
+
+  const [stores, setStores] = useState<Store[]>([]);
+  const [store, setStore] = useState<Store>();
+
+  const onChangeStore = (event: Store | null) => {
+    const selectedStore = event as Store;
+    setStore(selectedStore);
+    onFilterChange({ store: selectedStore });
+  }
+
+  useEffect(() => {
+    makeRequest
+      .get<Store[]>(`/stores`)
+      .then((response) => {
+        setStores(response.data)
+      })
+      .catch(() => {
+        console.error('Error to fetch stores');
+      });
+  }, []);
 
   return (
     <div className="filter-container base-card">
       <Select
-        options={filterOptions}
+        options={stores}
+        value={store}
         isClearable
         placeholder={'Filtre por loja'}
-        getOptionLabel={(genre: Store) => genre.name}
-        getOptionValue={(genre: Store) => String(genre.id)}
+        getOptionLabel={(store: Store) => store.name}
+        getOptionValue={(store: Store) => String(store.id)}
         classNamePrefix='filter-store-selector'
+        onChange={onChangeStore}
       />
     </div>
   );
